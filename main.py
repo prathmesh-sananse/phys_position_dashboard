@@ -28,6 +28,11 @@ def load_data():
 
 df = load_data()
 
+# Mask real Business Unit names with dummy names
+unique_bu = df["Int BU"].unique()
+bu_mapping = {real_bu: f"BU-{i+1}" for i, real_bu in enumerate(unique_bu)}
+df["Int BU"] = df["Int BU"].map(bu_mapping)
+
 # ---- SIDEBAR ----
 from datetime import datetime
 
